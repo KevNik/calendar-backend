@@ -14,6 +14,7 @@ model User {
   id  Int  @default(autoincrement()) @id
   name  String
   email String @unique
+  password String
   userSchedule UserSchedule[]
   @@map("users")
 }
@@ -25,6 +26,8 @@ model Schedule {
   date DateTime
   sendDate DateTime
   userSchedule UserSchedule[]
+
+  @@map("schedules")
 }
 
 model UserSchedule {
@@ -33,5 +36,7 @@ model UserSchedule {
   userId Int
   schedule Schedule @relation(fields: [scheduleId], references: [id])
   scheduleId Int
+
+  @@map("users_schedules")
 }
 
